@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{page.title}} - {{site.title}}</title>
+    <meta name="description" content="{{page.description}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include preconnect.html %}
+    <!-- ==============================
+      Author: Wesley Zajicek | https://github.com/wdzajicek
+      ============================== -->
+    {% if site.humans_file == true %}
+    <!-- The human's, the human's!! -->
+    <link rel="author" type="text/plain" href="/humans.txt" />
+    {%- endif -%}
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <meta name="theme-color" content="#b8babc">
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
