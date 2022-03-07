@@ -7,7 +7,8 @@ google-tag_key: false
 permalink: pretty
 description: > # this means to ignore newlines until "baseurl:"
 # Delete this comment and place description on this line
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "/ccm-app/" # the subpath of your site, e.g. /blog
+destination: ./docs
 # include:
 #   - "_pages"
 #   - "_posts"

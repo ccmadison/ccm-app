@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkccm_app=self.webpackChunkccm_app||[]).push([[317],{6317:function(e,c,t){t.r(c);var n=document.getElementById("agendaTable");c.default=function(){n.addEventListener("click",(function(e){e.target.matches(".Select")}))}}}]);

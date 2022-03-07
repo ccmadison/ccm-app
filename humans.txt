@@ -1,0 +1,17 @@
+---
+layout: null
+---
+
+/* TEAM */
+
+Name: Wesley Zajicek
+Role: Developer
+Site: https://wesleyzajicek.com
+Github: https://github.com/wdzajicek
+
+/* SITE */
+
+Copyright {{ site.time | date: "%Y" }} Wesley Zajicek
+Last update: {{ site.time | date: "%m/%d/%Y %H:%M" }} CST
+Standards: HTML5, CSS3, ES6/JavaScript, CommonJS, SCSS, YAML, Liquid - templating language, and more.
+Tools: Jekyll, Webpack, Babel/Corejs-3, Autoprefixer, Nodejs, ES6, Google YouTube & Sheets API's, Gulp, CloudCannon, and other open-source packages

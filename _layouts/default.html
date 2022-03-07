@@ -2,7 +2,9 @@
   {% include styles/fonts.html %}
   {% include styles/main.html %}
   {% include body.html %}
+  {% include nav.html %}
   {{ content }}
   {% include footer.html %}
+  {% if page.include_gapi == true %}{% include scripts/google-api.html %}{% endif %}
   {% include scripts/custom.html %}
 {% include foot.html %}

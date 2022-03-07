@@ -1,14 +1,29 @@
 ---
 title: Home
 description:
-baseurl:
+baseurl: /
 layout: default
+include_gapi: true
 ---
 
 <main class="container">
   <div class="row">
     <div class="col">
       <h1>{{ page.title }}</h1>
+      <section class="my-5">
+        <div class="card">
+          <div class="card-body">
+            <div id="Agenda">
+              <div class="text-center my-5">
+                <img
+                src="{% include baseurl.html %}assets/img/loader.min.svg"
+                class="img-fluid loader loader--animate"
+                alt="Loading...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </main>

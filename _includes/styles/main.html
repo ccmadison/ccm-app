@@ -1,4 +1,4 @@
-    {% if jekyll.environment == "production" or jekyll.environment == "publish" %}
+    {% if jekyll.environment == "production" or jekyll.environment == "publish" or jekyll.environment == "gh_pages" %}
     <!-- Link to this site's main stylesheet -->
-    <link rel="stylesheet" href="{{page.baseurl}}assets/js/dist/main{% if site.data.hash %}.{{ site.data.hash }}{% endif %}.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}assets/js/dist/main{% if site.data.hash %}.{{ site.data.hash }}{% endif %}.css">
     {% endif %}
