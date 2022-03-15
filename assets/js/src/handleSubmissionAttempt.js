@@ -42,8 +42,11 @@ function handleSubmissionAttempt(e) {
         </div>
         <div class="col-3 d-flex flex-column justify-content-center">
           <div class="input-group">
-          <input id="DayValue${i}" type="text" class="form-control" placeholder="" aria-label="Number of days" aria-describedby="days${i}" disabled>
+          <input id="DayValue${i}" type="text" class="form-control" placeholder="" aria-label="Number of days" aria-describedby="days${i}">
           <span class="input-group-text" id="days${i}">days</span>
+          <div class="forms__invalid-text">
+            <p class="mb-0 text-danger">Value must be 7 or&nbsp;higher.</p>
+          </div>
         </div>
         </div>
       </div>
@@ -51,11 +54,11 @@ function handleSubmissionAttempt(e) {
     </div>
   </div>`;
         });
-        const form = `<form id="Reserve" class="form my-4 mx-3" action="./index.html">
+        const form = `<form id="Reserve" class="form my-4 mx-3" action="./">
   <div class="card card-body">
     ${mapped.join('')}
     <div class="text-center">
-      <button type="submit" id="reserveSubmit" class="btn btn-outline-primary">Submit</button>
+      <button type="submit" id="reserveSubmit" class="btn btn-outline-primary">Reserve</button>
     </div>
   </div>
 </form>`;

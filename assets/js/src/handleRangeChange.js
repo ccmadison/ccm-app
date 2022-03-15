@@ -7,13 +7,21 @@ function handleRangeChange() {
     input.addEventListener('input', (e) => {
       let value = document.getElementById(`DayValue${i}`)
 
-      value.placeholder = e.target.value;
+      value.value = e.target.value;
     })
   });
+  [...document.querySelectorAll('input[id*="DayValue"]')].forEach((input, i) => {
+    input.addEventListener('change', (e) => {
+      let val = document.getElementById(`daysRange${i}`)
 
-  // range.addEventListener('input', (e) => {
-  //   value.placeholder = e.target.value;
-  // })
+      if (e.target.value < 7) {
+        e.target.parentElement.parentElement.classList.add('forms__invalid');
+        val.value = 7;
+        return e.target.value = 7;
+      }
+      return val.value = e.target.value;
+    })
+  })
 }
 
 export default handleRangeChange;

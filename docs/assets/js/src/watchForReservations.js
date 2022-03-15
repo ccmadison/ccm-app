@@ -1,5 +1,3 @@
-const RESERVE_FORM = document.getElementById('Reserve');
-
 function handleSubmission(e) {
   e.preventDefault();
 
@@ -18,6 +16,8 @@ function handleSubmission(e) {
 }
 
 function watchForReservations() {
+  const RESERVE_FORM = document.getElementById('Reserve');
+
   RESERVE_FORM.addEventListener('submit', handleSubmission, false);
 }
 
