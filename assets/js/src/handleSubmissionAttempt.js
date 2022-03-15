@@ -33,9 +33,12 @@ function handleSubmissionAttempt(e) {
         <div class="col-3 d-flex flex-column justify-content-center">
           <h2>${time}</h2>
         </div>
-        <div class="col-5">
-          <label for="daysRange${i}" class="form-label">Number of days to reserve</label>
+        <div class="col-6">
+          <label for="daysRange${i}" class="form-label">Length of reservation (in days)</label>
           <input type="range" class="form-range" min="7" max="90" step="1" id="daysRange${i}">
+          <div class="forms__invalid-text">
+            <p class="mb-0 text-danger">Please adjust the slider to your desired number of&nbsp;days</p>
+          </div>
         </div>
         <div class="col-3 d-flex flex-column justify-content-center">
           <div class="input-group">
@@ -48,10 +51,21 @@ function handleSubmissionAttempt(e) {
     </div>
   </div>`;
         });
-        MODAL_ELEMENT.querySelector('.modal-body').innerHTML = mapped.join('');
+        const form = `<form id="Reserve" class="form my-4 mx-3" action="./index.html">
+  <div class="card card-body">
+    ${mapped.join('')}
+    <div class="text-center">
+      <button type="submit" id="reserveSubmit" class="btn btn-outline-primary">Submit</button>
+    </div>
+  </div>
+</form>`;
+        MODAL_ELEMENT.querySelector('.modal-body').innerHTML = form;
         return res();
       });
       populateModalContent.then(() => handleRangeChange())
+        .then(() => {
+        return import('./watchForReservations').then(({default: watchForReservations}) => watchForReservations())
+      })
       // return import('./handleRangeChange').then(({default: handleRangeChange}) => handleRangeChange())
     }
   })

@@ -1,0 +1,16 @@
+.forms__invalid {
+  border-color: var(--bs-danger);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.forms__invalid-text {
+  visibility: hidden;
+  display: none;
+}
+
+.forms__invalid .forms__invalid-text {
+  visibility: visible;
+  display: block;
+}
