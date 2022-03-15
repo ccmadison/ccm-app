@@ -12,18 +12,43 @@ include_gapi: true
       <h1>{{ page.title }}</h1>
       <section class="my-5">
         <div class="card">
+          <div class="card-header">
+            <button role="button" class="btn btn-primary" id="authorize_button">Sign In</button>
+            <button role="button" class="btn btn-outline-primary" id="signout_button" style="display: none;">Sign Out</button>
+          </div>
           <div class="card-body">
-            <div id="Agenda">
-              <div class="text-center my-5">
-                <img
-                src="{% include baseurl.html %}assets/img/loader.min.svg"
-                class="img-fluid loader loader--animate"
-                alt="Loading...">
+            <form id="Form" class="form" action="{{ site.baseurl }}index.html">
+              <div class="row">
+                <div class="col mb-3 d-flex justify-content-end">
+                  <button type="submit" id="Submit" class="btn btn-outline-secondary" disabled>Request selected times</button>
+                </div>
               </div>
-            </div>
+              <div id="Agenda">
+                <div class="text-center my-5">
+                  <h2>Please, sign in to view the schedule</h2>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </section>
     </div>
   </div>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="requestTimeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="requestTimeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="requestTimeModalLabel">Reserve a time</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="ModalBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

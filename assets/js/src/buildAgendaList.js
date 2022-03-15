@@ -1,15 +1,16 @@
 const PARENT = document.getElementById('Agenda');
+const SUBMIT_BUTTON = document.getElementById('Submit');
 
 function createCells(row) {
   let html = '';
   row.forEach((cell, i) => {
     if (row.length == 3 && i == 2) {
-      return html += `<td>${cell}</td><td><button type="button" class="btn btn-primary Select">Select</button></td>`;
+      return html += `<td>&nbsp;</td><td><button type="button" data-hour="${row[0]}" class="btn btn-outline-primary buttons__select Select">Select</button></td>`;
     }
     if (i == 1 && cell == 'FALSE') {
       return html += '<td>Open</td>';
     }
-    if (i == 1 && cell == 'TRUE') {
+    if (i == 1 && cell == 'TRUE' ) {
       return html += '<td>&nbsp;</td>';
     }
     return html += `<td>${cell}</td>`;
@@ -21,7 +22,6 @@ function createBodyRows(data) {
   let html = '';
   data.forEach(row => {
     const classes = row[1] == 'TRUE' ? ' class="table-primary"' : '';
-    console.log(row[1]);
     html += `<tr${classes}>
     ${createCells(row)}
   </tr>`;
@@ -40,7 +40,7 @@ function createHeaderCells(row) {
 function buildAgendaList(response) {
   const data = response.result.values;
 
-  let html = `<table id="agendaTable" class="table table-striped table-hover table-sm tables__align-cell-middle">
+  let html = `<table id="AgendaTable" class="table table-striped table-hover table-sm tables__align-cell-middle">
   <thead>
     <tr>
       ${createHeaderCells(data[1])}
@@ -51,6 +51,7 @@ function buildAgendaList(response) {
   </tbody>
   </table>`;
 
+  SUBMIT_BUTTON.disabled = false;
   PARENT.innerHTML = '';
   return PARENT.innerHTML = html;
 }

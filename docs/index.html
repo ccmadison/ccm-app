@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&family=Material+Icons&display=swap" rel="stylesheet">
       
     <!-- Link to this site's main stylesheet -->
-    <link rel="stylesheet" href="/ccm-app/assets/js/dist/main.3ac8480ccbecf4442373.css">
+    <link rel="stylesheet" href="/ccm-app/assets/js/dist/main.297e24af7196a404648b.css">
     
     </head>
   <body>
@@ -48,21 +48,47 @@
       <h1>Home</h1>
       <section class="my-5">
         <div class="card">
+          <div class="card-header">
+            <button role="button" class="btn btn-primary" id="authorize_button">Sign In</button>
+            <button role="button" class="btn btn-outline-primary" id="signout_button" style="display: none;">Sign Out</button>
+          </div>
           <div class="card-body">
-            <div id="Agenda">
-              <div class="text-center my-5">
-                <img
-                src="assets/img/loader.min.svg"
-                class="img-fluid loader loader--animate"
-                alt="Loading...">
+            <form id="Form" class="form" action="/ccm-app/index.html">
+              <div class="row">
+                <div class="col mb-3 d-flex justify-content-end">
+                  <button type="submit" id="Submit" class="btn btn-outline-secondary" disabled>Request selected times</button>
+                </div>
               </div>
-            </div>
+              <div id="Agenda">
+                <div class="text-center my-5">
+                  <h2>Please, sign in to view the schedule</h2>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </section>
     </div>
   </div>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="requestTimeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="requestTimeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="requestTimeModalLabel">Reserve a time</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="ModalBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <footer class="border-top my-5 py-5">
   <div class="container">
     <div class="row">
@@ -74,9 +100,9 @@
 </footer>
 
       <!-- Google API -->
-    <script src="https://apis.google.com/js/api.js" defer></script>
+    <script src="https://apis.google.com/js/api.js"></script>
       <!-- custom compiled and minified javascript -->
-    <script src="/ccm-app/assets/js/dist/main.3ac8480ccbecf4442373.bundle.js"></script>
+    <script src="/ccm-app/assets/js/dist/main.297e24af7196a404648b.bundle.js"></script>
 
   <!-- Close body -->
   </body>
