@@ -1,6 +1,6 @@
 function handleRangeChange() {
   const RANGE_LIST = document.querySelectorAll('input[id*="daysRange"]');
-  console.log(RANGE_LIST);
+  // console.log(RANGE_LIST);
   [...RANGE_LIST].forEach(input => {
     let i = input.id.slice(-1);
 
