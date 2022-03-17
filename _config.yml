@@ -28,3 +28,4 @@ exclude:
   - "webpack.config.js"
   - "buildtools/"
   - "postcss.config.js"
+  - "docs/"
