@@ -18,7 +18,6 @@ window.addEventListener('load', () => {
     // }).then(() => {
     //   return import('calendar-js/index').then(({ default: calendar }) => {
     //   });
-      
     })
   
 });

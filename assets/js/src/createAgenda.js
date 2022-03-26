@@ -57,8 +57,6 @@ function initClient() {
 }
 
 function createAgenda() {
-  console.log(`Module loaded`);
-
   gapi.load('client:auth2', initClient)
 
   // gapi.client.init(CLIENT_PARAMS).then(() => {

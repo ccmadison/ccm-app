@@ -8,6 +8,8 @@ function handleSubmissionAttempt(e) {
     const modal = Modal.getOrCreateInstance(MODAL_ELEMENT);
 
     modal.toggle();
+    import('./draggableModal').then(({default: init}) => init(MODAL_ELEMENT))
+
     if (target.querySelector('.form-check-input') == null) {
       // Reject submission here
       MODAL_ELEMENT.querySelector('.modal-body').innerHTML = `<div class="my-5"><h2>Whoops!</h2><h5>Please select a time first.</h5></div>`;
@@ -20,7 +22,7 @@ function handleSubmissionAttempt(e) {
 
           [...inputList].forEach(input => {
             if (input.checked == true) {
-              selectionArr.push(input.value)
+              selectionArr.push(input.value);
             }
             return selectionArr;
           })
@@ -35,19 +37,19 @@ function handleSubmissionAttempt(e) {
           let mapped = selectionArr.map((time, i) => {
             return `<div class="card card-body mb-3">
     <div class="row">
-      <div class="col-4 d-flex flex-column justify-content-center">
+      <div class="col-lg-4 d-flex flex-column justify-content-center">
         <h2>${time}</h2>
       </div>
-      <div class="col-4">
+      <div class="col-lg-4">
         <div class="form-floating mb-3">
           <input type="text" class="form-control" id="startInput${i}" value="${today}" placeholder="${today}" disabled>
-          <label for="startInput${i}">Start-date of reservation</label>
+          <label for="startInput${i}">Start date</label>
         </div>
       </div>
-      <div class="col-4 d-flex flex-column justify-content-center">
+      <div class="col-lg-4 d-flex flex-column justify-content-center">
         <div class="form-floating mb-3">
-          <input type="date" class="form-control" id="endInput${i}">
-          <label for="endInput${i}">End-date of reservation</label>
+          <input type="date" class="form-control" id="endInput${i}" required>
+          <label for="endInput${i}">End date</label>
         </div>
       </div>
     </div>
