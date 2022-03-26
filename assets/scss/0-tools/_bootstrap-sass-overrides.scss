@@ -1,0 +1,32 @@
+// Bootstrap 5 SASS variable overrides to modify bootstrap defaults go here
+// ============================================================= //
+
+// Custom variables for this module
+$color-text: #555;
+$color-rgba-25a: rgba(0,0,0,.25);
+$border-radius-75: .75rem;
+
+// Border overrides
+$border-width: 1.75px;
+$border-color: $color-rgba-25a;
+
+// Reboot body color
+$body-color: $color-text; // Main typography color
+
+// Table overrides
+$table-hover-bg-factor: .1;
+
+// Button overrides
+$btn-border-radius: .5rem;
+
+// Card overrides
+$card-bg: transparent !important;
+$card-border-radius: .75rem;
+$card-border-color: $color-rgba-25a;
+
+// Modal overrides
+$modal-content-border-radius: .75rem;
+
+// Form overrides
+$form-check-input-checked-bg-color: $color-rgba-25a;
+$form-check-input-checked-border-color: rgba(0,0,0,.5);

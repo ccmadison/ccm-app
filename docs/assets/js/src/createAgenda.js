@@ -58,7 +58,6 @@ function initClient() {
 
 function createAgenda() {
   gapi.load('client:auth2', initClient)
-
   // gapi.client.init(CLIENT_PARAMS).then(() => {
   //   return gapi.client.sheets.spreadsheets.values.get(SHEETS_PARAMS);
   // }).then(response => {

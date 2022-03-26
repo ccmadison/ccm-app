@@ -2,3 +2,11 @@
 .buttons__select label {
   pointer-events: none;
 }
+
+.buttons--line-height-1rem {
+  line-height: 1rem;
+}
+
+.buttons__span--no-pointer {
+  pointer-events: none;
+}

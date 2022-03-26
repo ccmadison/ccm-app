@@ -2,10 +2,7 @@
 @import "../../node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$body-color: #555;
-$card-border-radius: .75rem;
-$form-check-input-checked-bg-color: rgba(0,0,0,.25);
-$form-check-input-checked-border-color: rgba(0,0,0,.5);
+@import './0-tools/bootstrap-sass-overrides';
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../node_modules/bootstrap/scss/variables";

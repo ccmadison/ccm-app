@@ -13,11 +13,13 @@
 @import '1-base/footer';
 @import '1-base/buttons';
 @import '1-base/forms';
+@import '1-base/nav';
 
 // Modular components
 @import '2-modules/header';
 @import '2-modules/error';
 @import '2-modules/loader';
+// @import '2-modules/dark-mode'; // Styling for a custom dark-theme
 
 // Layout items
 // @import "3-layout/...";

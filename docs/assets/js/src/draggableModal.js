@@ -6,7 +6,7 @@ let pos4 = 0;
 function elementDrag(e) {
   const element = elementDrag.element;
 
-  e = e || window.event;
+  // e = e || window.event;
   e.preventDefault();
 
   pos1 = pos3 - e.clientX;
@@ -23,20 +23,16 @@ function closeDragElement() {
   document.onmousemove = null;
 }
 
-function dragElement(el) {
+function draggableModal(modal) {
   document.querySelector('.modal-header').onmousedown = (e) => {
-    e = e || window.event;
+    // e = e || window.event;
     e.preventDefault();
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
-    elementDrag.element = el;
+    elementDrag.element = modal;
     document.onmousemove = elementDrag;
   };
-}
-
-function draggableModal(MODAL_ELEMENT) {
-  dragElement(MODAL_ELEMENT);
 }
 
 export default draggableModal;
