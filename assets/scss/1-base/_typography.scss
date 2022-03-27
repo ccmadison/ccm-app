@@ -1,3 +1,30 @@
 // Typography styles (site specific)
 // ===============================
 
+p,
+ul li,
+ol li,
+table,
+table,
+thead,
+tbody,
+th,
+td,
+button,
+input,
+.btn,
+body {
+  font-family: $font-family-paragraph;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: .012rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-headings;
+}

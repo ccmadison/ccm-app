@@ -8,6 +8,6 @@ Github: https://github.com/wdzajicek
 /* SITE */
 
 Copyright 2022 Wesley Zajicek
-Last update: 03/26/2022 04:06 CST
+Last update: 03/26/2022 21:58 CST
 Standards: HTML5, CSS3, ES6/JavaScript, CommonJS, SCSS, YAML, Liquid - templating language, and more.
 Tools: Jekyll, Webpack, Babel/Corejs-3, Autoprefixer, Nodejs, ES6, Google YouTube & Sheets API's, Gulp, CloudCannon, and other open-source packages
