@@ -23,6 +23,7 @@ $btn-border-radius: .5rem;
 $card-bg: transparent !important;
 $card-border-radius: .75rem;
 $card-border-color: $color-rgba-25a;
+$card-cap-bg: rgba(0,0,0,.075);
 
 // Modal overrides
 $modal-content-border-radius: .75rem;
@@ -30,3 +31,9 @@ $modal-content-border-radius: .75rem;
 // Form overrides
 $form-check-input-checked-bg-color: $color-rgba-25a;
 $form-check-input-checked-border-color: rgba(0,0,0,.5);
+
+
+$headings-font-family: 'Roboto', sans-serif;
+$headings-font-weight: 500;
+$headings-line-height: 1.2;
+$headings-color: #555;

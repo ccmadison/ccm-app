@@ -28,7 +28,7 @@ function createBodyRows(data) {
   let html = '';
 
   data.forEach(row => {
-    const classes = row[1] == 'TRUE' ? ' class="bg-primary"' : '';
+    const classes = row[1] == 'TRUE' ? ' class="bg-primary tables__white"' : '';
     html += `<tr${classes}>
     ${createCells(row)}
   </tr>`;
