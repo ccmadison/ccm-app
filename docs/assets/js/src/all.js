@@ -9,7 +9,13 @@ window.addEventListener('load', () => {
       // }).then(([Button, Popover]) => {
       //   return import('bootstrap/js/dist/tooltip').then(({default: Tooltip}) => Tooltip)
       // }).then(([Button, Popover, Tooltip]) => {
-      return import('bootstrap/js/dist/collapse').then(({default: Collapse}) => [Collapse, Button])
+      return import('bootstrap/js/dist/collapse').then(({ default: Collapse }) => [Collapse, Button])
+    // }).then(([Collapse, Button]) => {
+    //   import('bootstrap/js/dist/tooltip').then(({ default: Tooltip }) => Tooltip)
+    //     .then(Tooltip => {
+    //       return import('./showTooltipOnMouseOver').then(({default: init}) => init(Tooltip))
+    //     })
+    //   return [Collapse, Button];
     }).then(([Collapse, Button]) => {
       return import('./createAgenda')
         .then(({ default: createAgenda }) => createAgenda())
