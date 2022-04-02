@@ -1,6 +1,10 @@
 import getAgendaObject from './getAgendaObject';
 
+
 const AGENDA_OBJECT = getAgendaObject();
+
+const TABLE = document.getElementById('AgendaTable');
+const ROWS = TABLE.querySelectorAll('tbody tr'); // NodeList of table rows to iterate over
 const doubleDigitNum = (string) => string <= 9 ? '0' + string : string; // Converts a number into a string of 2 digits (e.g. 4 => '04')
 
 function formatDateString(d) {
@@ -76,20 +80,19 @@ END:VCALENDAR`;
       "valueInputOption": 'USER_ENTERED'//,
       // "includeValuesInResponse": true
     }
+    const update = {
+      "majorDimension": "COLUMNS",
+    }
 
-    for (const [time, status, end] of edits) {
+    for (const [time, status, end] of edits) { // Loop through our edits
       const range = `Agenda!${AGENDA_OBJECT[time].status}:${AGENDA_OBJECT[time].end}`
-      const update = {
-        "range": range,
-        "majorDimension": "COLUMNS",
-        "values": [
-          [status],
-          [end]
-        ]
-      }
 
       params.range = range;
-      console.log(update);
+      update.range = range;
+      update.values = [
+        [status],
+        [end]
+      ];
 
       const updateRequest = gapi.client.sheets.spreadsheets.values.update(params, update);
 
@@ -109,6 +112,16 @@ END:VCALENDAR`;
         FORM_CARD.insertAdjacentHTML('afterbegin', html);
         // values.splice(0, 0, [''], ['Times', 'Status', 'End date of reservation']);
         RESERVE_BUTTON.disabled = true;
+
+        // Handle table update with edits arr
+        /**
+         * 
+         * 
+         *  @TODO - Use the `edits` array to update the agenda table to 
+         *          reflect the successful `sheets.values.update()` calls
+         * 
+         * 
+         */
 
         // const updatedAgenda = { // buildAgendaList(response) expects a Sheets response object for a parameter
         //   result: {
