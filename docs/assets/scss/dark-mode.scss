@@ -7,6 +7,29 @@ html.dark-mode {
   body {
     background-color: #2b3138;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #b4b7b9;
+  }
+  .navbar-toggler {
+    border-color: rgba(255,255,255,.75);    
+  }
+  .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 50%);
+  }
+  .navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path stroke="rgba%28 255, 255, 255, 0.65%29" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+  }
+  ::-webkit-calendar-picker-indicator { // Pseudo element to replace calendar picker icon w/ custom icon
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="%23b4b7b9"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>');
+  }
+  input.form-control { // Dark color-scheme makes white calendar icon & dark-themed calendar picker colors
+    color-scheme: dark;
+  }
   body,
   .table,
   .table-striped>tbody>tr:nth-of-type(odd)>*,
@@ -69,6 +92,6 @@ html.dark-mode {
   }
   .form-control {
     background-color: #1c2127;
-    color: #888;
+    color: #c9c9c9;
   }
 }

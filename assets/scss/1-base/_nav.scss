@@ -1,7 +1,9 @@
-.nav__bg {
-  background-color: #c5ccd3;
+
+.nav__sticky {
+  top: 0;
+  z-index: 1;
 }
 
-.nav__border {
-  border-bottom-color: rgba(0,0,0,.125);
+.nav__collapse--pe-1.show {
+  padding-bottom: 1rem;
 }

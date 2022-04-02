@@ -14,10 +14,31 @@ function createCells(row) {
       return html += `<td>&nbsp;</td>`;
     }
     if (i == 2 && cell != '') {
-      const today = new Date;
+      const [now, today, expire] = [new Date, new Date, new Date];
       const end = new Date(cell);
+      const hour = row[0].search(/PM$/) !== -1 ? parseInt(row[0].replace(/(\d\d)?:00\sPM/, `$1`), 10) + 12 : row[0].replace(/^\d\d?:00\sAM/, `$1`);
 
+      expire.setHours((hour + 1), 0, 0, 0);
       today.setHours(0, 0, 0, 0);
+
+      if (today.getTime() === end.getTime()) {
+        if (now.getTime() >= expire.getTime()) {
+          // Update sheet here because time slot is open and sheet needs updating
+          import('./createUpdateResponse').then(({ default: init }) => {
+            const values = init(); // Creates object representing
+
+            console.log(values);
+            
+          })
+        }
+        
+      }
+
+      
+      // console.log(today);
+      // console.log(now);
+      
+
       return html += `<td>${(end.getTime() - today.getTime()) / (24 * 60 * 60 * 1000)}</td><td>${cell}</td>`;
     }
   })

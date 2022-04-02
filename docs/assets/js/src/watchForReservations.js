@@ -1,4 +1,6 @@
-const RANGE = 'Agenda!A3:C26';
+import getAgendaObject from './getAgendaObject';
+
+const AGENDA_OBJECT = getAgendaObject();
 const doubleDigitNum = (string) => string <= 9 ? '0' + string : string; // Converts a number into a string of 2 digits (e.g. 4 => '04')
 
 function formatDateString(d) {
@@ -11,24 +13,6 @@ function formatDateString(d) {
     doubleDigitNum(d.getSeconds())
   ];
   return `${yyyy}${MM}${dd}T${hh}${mm}${ss}`;
-}
-
-function populateRow(list, arr) {
-  list.forEach((cell, i) => {
-    if (i == 0) {
-      arr.push(cell.innerHTML);
-    }
-    if (i == 1) {
-      cell.innerHTML == 'Open' ? arr.push('FALSE') : arr.push('TRUE');
-    }
-    if (i == 3 && cell.innerHTML.search(/\d\d?\/\d\d?\/\d{4}/) != -1) {
-      arr.push(cell.innerHTML);
-    }
-    if (i == 3 && cell.innerHTML.search(/\d\d?\/\d\d?\/\d{4}/) == -1) {
-      arr.push('');
-    }
-  });
-  return arr;
 }
 
 function handleSubmission(e) {
@@ -87,62 +71,122 @@ END:VCALENDAR`;
       edits.push([TIME, 'TRUE', end]); // Populate the edits array with time-slot changes for editing the Google Sheet later
     }); // END of [...START_LIST].forEach()
 
-    const TABLE = document.getElementById('AgendaTable');
-    const ROWS = TABLE.querySelectorAll('tr'); // NodeList of table rows to iterate over
-    const vals = [];
-
-    [...ROWS].forEach(row => { // Iterate through table rows
-      const rowArr = []; // Each row is made of an array 
-      const CELLS = row.querySelectorAll('td');
-      // Populate each row array with the values from the table
-      populateRow(CELLS, rowArr);
-      vals.push(rowArr);
-    });
-    const values = vals.slice(1); // This array represents the table of times & reservations that were built into the page from the Sheet
-    // Loop through our edits
-    edits.forEach((edit) => {
-      const time = edit[0]; // First item is the time-slot
-      const editIndex = values.findIndex((row) => row[0] == time);
-
-      values.splice(editIndex, 1, edit); // Replaces the desired open time-slot with our new reservations
-    });
     const params = {
       "spreadsheetId": '1UyPFZVN4NIo959qxGCwP6cyKoe9fq5KHD0zE2hyGUi8',
-      "range": RANGE,
-      "valueInputOption": 'USER_ENTERED'
+      "valueInputOption": 'USER_ENTERED'//,
+      // "includeValuesInResponse": true
     }
-    const update = {
-      "range": RANGE,
-      "majorDimension": "ROWS",
-      "values": values
-    }
-    const updateRequest = gapi.client.sheets.spreadsheets.values.update(params, update);
 
-    updateRequest.then(response => {
-      // Handle successful update here
-      // spreadsheets.values.update() does not return the updated spreadsheet (unless you tell it to)
-      // console.log(response);
-      const FORM_CARD = document.getElementById('Reserve').querySelector('.card.card-body.bg-light');
-      const RESERVE_BUTTON = document.getElementById('reserveSubmit');
-      const html = `<div class="alert alert-success text-center mb-3" role="alert">
-  <h3 class="text-success">Success!</h3>
-  <p class="text-success mb-0">Your reservation was successful.</p>
-</div>`;
-
-      FORM_CARD.insertAdjacentHTML('afterbegin', html);
-      values.splice(0, 0, [''], ['Times', 'Status', 'End date of reservation']);
-      RESERVE_BUTTON.disabled = true;
-
-      const updatedAgenda = { // buildAgendaList(response) expects a Sheets response object for a parameter
-        result: {
-          values: values
-        }
+    for (const [time, status, end] of edits) {
+      const range = `Agenda!${AGENDA_OBJECT[time].status}:${AGENDA_OBJECT[time].end}`
+      const update = {
+        "range": range,
+        "majorDimension": "COLUMNS",
+        "values": [
+          [status],
+          [end]
+        ]
       }
 
-      import('./buildAgendaList').then(({ default: build }) => build(updatedAgenda));
-    }, err => {
-      console.error(`Error updating the spreadsheet: ${err.result.error.message}`);
-    })
+      params.range = range;
+      console.log(update);
+
+      const updateRequest = gapi.client.sheets.spreadsheets.values.update(params, update);
+
+      updateRequest.then(response => {
+        // Handle successful update here
+        console.log(response);
+        const FORM_CARD = document.getElementById('Reserve').querySelector('.card.card-body.bg-light');
+        const RESERVE_BUTTON = document.getElementById('reserveSubmit');
+        const html = `<div class="alert alert-success text-center mb-3" role="alert">
+    <h3 class="text-success">Success!</h3>
+    <p class="text-success mb-0">
+      Your reservation for the daily <strong>${time}</strong> prayer time was successful! <br>
+      You have reserved the ${time} prayer block until <strong>${end}</strong>.
+    </p>
+  </div>`;
+
+        FORM_CARD.insertAdjacentHTML('afterbegin', html);
+        // values.splice(0, 0, [''], ['Times', 'Status', 'End date of reservation']);
+        RESERVE_BUTTON.disabled = true;
+
+        // const updatedAgenda = { // buildAgendaList(response) expects a Sheets response object for a parameter
+        //   result: {
+        //     values: values
+        //   }
+        // }
+
+        // import('./buildAgendaList').then(({ default: build }) => build(updatedAgenda));
+      }, err => {
+        console.error(`Error updating the spreadsheet: ${err.result.error.message}`);
+      })
+    }
+
+
+    // const TABLE = document.getElementById('AgendaTable');
+    // const ROWS = TABLE.querySelectorAll('tr'); // NodeList of table rows to iterate over
+    // const vals = [];
+
+    // [...ROWS].forEach(row => { // Iterate through table rows
+    //   const rowArr = []; // Each row is made of an array
+    //   const CELLS = row.querySelectorAll('td');
+    //   // Populate each row array with the values from the table
+    //   populateRow(CELLS, rowArr);
+    //   vals.push(rowArr);
+    // });
+    // const values = vals.slice(1); // This array represents the table of times & reservations that were built into the page from the Sheet
+    // // Loop through our edits
+    // edits.forEach((edit) => {
+    //   const time = edit[0]; // First item is the time-slot
+    //   const editIndex = values.findIndex((row) => row[0] == time);
+
+    //   values.splice(editIndex, 1, edit); // Replaces the desired open time-slot with our new reservations
+    // });
+
+
+    // edits.forEach(edit => {
+    //   let [time, status, end] = edit;
+
+    //   const editRange = `Agenda!${AGENDA_OBJECT[time].status}:${AGENDA_OBJECT[time].end}`;
+    // })
+
+    // const params = {
+    //   "spreadsheetId": '1UyPFZVN4NIo959qxGCwP6cyKoe9fq5KHD0zE2hyGUi8',
+    //   "range": RANGE,
+    //   "valueInputOption": 'USER_ENTERED'
+    // }
+    // const update = {
+    //   "range": RANGE,
+    //   "majorDimension": "ROWS",
+    //   "values": values
+    // }
+    // const updateRequest = gapi.client.sheets.spreadsheets.values.update(params, update);
+
+//     updateRequest.then(response => {
+//       // Handle successful update here
+//       // spreadsheets.values.update() does not return the updated spreadsheet (unless you tell it to)
+//       // console.log(response);
+//       const FORM_CARD = document.getElementById('Reserve').querySelector('.card.card-body.bg-light');
+//       const RESERVE_BUTTON = document.getElementById('reserveSubmit');
+//       const html = `<div class="alert alert-success text-center mb-3" role="alert">
+//   <h3 class="text-success">Success!</h3>
+//   <p class="text-success mb-0">Your reservation was successful.</p>
+// </div>`;
+
+//       FORM_CARD.insertAdjacentHTML('afterbegin', html);
+//       values.splice(0, 0, [''], ['Times', 'Status', 'End date of reservation']);
+//       RESERVE_BUTTON.disabled = true;
+
+//       const updatedAgenda = { // buildAgendaList(response) expects a Sheets response object for a parameter
+//         result: {
+//           values: values
+//         }
+//       }
+
+//       import('./buildAgendaList').then(({ default: build }) => build(updatedAgenda));
+//     }, err => {
+//       console.error(`Error updating the spreadsheet: ${err.result.error.message}`);
+//     })
   });
 }
 
