@@ -17,15 +17,17 @@ window.addEventListener('load', () => {
     //     })
     //   return [Collapse, Button];
     }).then(([Collapse, Button]) => {
-      return import('./createAgenda')
-        .then(({ default: createAgenda }) => createAgenda())
+      if ( !document.getElementById('Agenda') )
+        return;
+
+      return import('./agenda/createAgenda').then(({ default: createAgenda }) => createAgenda());
     // }).then(() => {
     //   return import('calendar-js/index').then(({ default: calendar }) => {
     //   });
     }).then(() => {
       if (!document.getElementById('themeToggle'))
         return;
-      
+
       return import('./toggleTheme').then(({default: toggleTheme}) => toggleTheme())
     })
   
